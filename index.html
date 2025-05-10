@@ -27,7 +27,7 @@
           --button-height: 25px;
           --border-radius: 10px;
           --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          --transition-speed: 0.2s;
+          --transition-speed: 0s; /* 设置为0，禁用所有过渡效果 */
           --folder-color: #2196f3;
           --subfolder-color: #17832494;
           --file-color: #9E9E9E;
@@ -79,7 +79,6 @@
         color: var(--text-primary);
         margin-top: calc(var(--panel-height) + -40px);
         padding: 25px;
-        transition: background-color var(--transition-speed);
       }
 
       .control-panel {
@@ -94,7 +93,6 @@
         padding-top: 12px;
         padding-left: 16px;
         padding-right: 16px;
-        transition: background-color var(--transition-speed);
       }
 
       .control-panel-inner {
@@ -102,7 +100,7 @@
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        gap: 50px;
+        gap: 25px;
       }
 
       .button-group {
@@ -124,7 +122,7 @@
 
       button {
         height: var(--button-height);
-        padding: 0 20px;
+        padding: 0 16px;
         border: none;
         border-radius: var(--border-radius);
         background-color: var(--primary-color);
@@ -132,7 +130,6 @@
         font-size: 16px;
         font-weight: 500;
         cursor: pointer;
-        transition: all var(--transition-speed);
         flex: auto;
         min-width: 36px;
         display: flex;
@@ -161,7 +158,6 @@
         font-size: 16px;
         color: var(--text-primary);
         background-color: var(--background-primary);
-        transition: all var(--transition-speed);
       }
 
       #searchInput:focus {
@@ -173,7 +169,6 @@
       details {
         border-radius: var(--border-radius);
         background-color: var(--background-secondary);
-        transition: all var(--transition-speed);
         border-left: 1px solid transparent;
       }
 
@@ -231,7 +226,6 @@
         cursor: default; /* 设置默认鼠标指针 */
         background-color: var(--background-primary);
         border-bottom: 1px solid var(--divider-color);
-        transition: all var(--transition-speed);
         user-select: none;
         display: flex;
         align-items: center;
@@ -267,7 +261,7 @@
         border-radius: 2px;
         bottom: 0;
         left: 0;
-        transition: all var(--transition-speed);
+        transition: none !important;
       }
       
       .folder-icon::after {
@@ -279,7 +273,7 @@
         border-radius: 1px 1px 0 0;
         top: 0;
         left: 0;
-        transition: all var(--transition-speed);
+        transition: none !important;
       }
       
       // details[open] .folder-icon::before {
@@ -313,7 +307,10 @@
       }
 
       .content {
-        padding: 16px;
+          padding-right: 16px;
+          padding-bottom: 16px;
+          margin: 0 auto;
+          width: 1200px;
       }
 
       .highlight {
@@ -377,7 +374,9 @@
         }
 
         .content {
-          padding: 12px;
+            padding-bottom: 12px;
+            padding-left: 12px;
+            width: 100%;
         }
 
         button {
@@ -450,7 +449,7 @@
         color: white;
         font-size: 14px;
         cursor: pointer;
-        transition: all var(--transition-speed);
+        transition: none;
       }
 
       .theme-toggle:hover {
@@ -558,14 +557,12 @@
         width: 32px;
         height: 32px;
         font-size: 16px;
-        transition: all 0.2s ease;
       }
 
         /* 添加到现有样式表中 */
       a {
         color: #05376b; /* 改为您想要的颜色，这里是珊瑚红色 */
         text-decoration: none; /* 移除下划线 */
-        transition: color var(--transition-speed);
       }
 
       a:hover {
@@ -625,7 +622,7 @@
           width: 300px;
           background-color: var(--background-secondary);
           box-shadow: var(--box-shadow);
-          transition: transform 0.3s ease-in-out;
+          transition: none !important;
           z-index: 9999;
           border-radius: 10px 0 0 10px;
           overflow: visible;
@@ -727,7 +724,7 @@
         font-size: 12px;
         color: #6c7073;
         background-color: var(--background-primary);
-        transition: all var(--transition-speed);
+        transition: none;
         appearance: none; /* 移除默认样式 */
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -758,7 +755,7 @@
         /* 确保链接有默认的手型光标 */
         cursor: pointer; 
         /* 过渡效果，让颜色变化更平滑 */
-        transition: color 0.3s ease; 
+        transition: none !important; 
       }
 
       #sidebar-content .ad-container a:hover {
@@ -767,53 +764,143 @@
         /* 鼠标悬浮时显示下划线 */
         text-decoration: underline; 
       }
-  </style>
-  <!-- 引入 particles.js 库 -->
-  <script src="https://cdn.staticfile.org/particles.js/2.0.0/particles.min.js"></script>
-</head>
-<body>
-  <!-- 修改控制面板部分 -->
-    <div class="control-panel">
-      <div class="control-panel-inner">
-          
-        <!-- 修改信息显示区域的HTML结构 -->
-        <div class="info-section">
-          <!-- 添加最近更新日期显示 -->
-          <div class="datetime-display">
-            <span>🧭</span>
-            <span id="lastUpdatedDate">更新：2025-05-04</span>
-          </div>
-          <!-- 添加主题切换按钮 -->
-          <button class="theme-button" onclick="toggleTheme()" title="切换主题">
-            <span id="themeIcon">💧</span>
-          </button>
-      </div>
-
-      <div class="button-group">
-        <button onclick="expandAll()">一键展开</button>
-        <button onclick="collapseAll()">一键折叠</button>
-      </div>
       
-      <div class="search-section">
-        <div class="search-input-group">
-          <input type="text" id="searchInput" placeholder="输入搜索词...">
-          <!-- 添加匹配方式选择下拉菜单 -->
-          <select id="matchType">
-            <option value="partial">局部匹配</option>
-            <option value="regex">完整匹配</option>
-          </select>
-          <button onclick="searchAndHighlight()">搜索</button>
+      /* 粒子效果开关样式 */
+      .particles-toggle-container {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+      }
+      
+      .particles-toggle {
+        position: relative;
+        display: inline-block;
+        width: 34px;
+        height: 18px;
+      }
+      
+      .particles-toggle input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      
+      .particles-toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: none !important;
+        border-radius: 18px;
+      }
+      
+      .particles-toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 14px;
+        width: 14px;
+        left: 3px;
+        bottom: 2px;
+        background-color: white;
+        transition: none !important;
+        border-radius: 50%;
+      }
+      
+      input:checked + .particles-toggle-slider {
+        background-color: var(--primary-color);
+      }
+      
+      input:checked + .particles-toggle-slider:before {
+        transform: translateX(14px);
+      }
+      
+      .particles-toggle-label {
+        font-size: 12px;
+        white-space: nowrap;
+      }
+      
+      @media (max-width: 767px) {
+        .particles-toggle {
+          width: 26px;
+          height: 14px;
+        }
+        
+        .particles-toggle-slider:before {
+          height: 10px;
+          width: 10px;
+          left: 2px;
+          bottom: 2px;
+        }
+        
+        input:checked + .particles-toggle-slider:before {
+          transform: translateX(12px);
+        }
+        
+        .particles-toggle-label {
+          font-size: 10px;
+        }
+      }
+    </style>
+    <!-- 引入 particles.js 库 -->
+    <script src="https://cdn.staticfile.org/particles.js/2.0.0/particles.min.js"></script>
+  </head>
+  <body>
+    <!-- 修改控制面板部分 -->
+      <div class="control-panel">
+        <div class="control-panel-inner">
+            
+          <!-- 修改信息显示区域的HTML结构 -->
+          <div class="info-section">
+            <!-- 添加最近更新日期显示 -->
+            <div class="datetime-display">
+              <span>🧭</span>
+              <span id="lastUpdatedDate">更新：2025-05-10</span>
+            </div>
+            
+            <!-- 添加粒子效果开关 -->
+            <label class="particles-toggle-container" title="背景特效">
+              <span class="particles-toggle-label">粒子</span>
+              <label class="particles-toggle">
+                <input type="checkbox" id="particlesToggle">
+                <span class="particles-toggle-slider"></span>
+              </label>
+            </label>
+            
+            <!-- 添加主题切换按钮 -->
+            <button class="theme-button" onclick="toggleTheme()" title="切换主题">
+              <span id="themeIcon">💧</span>
+            </button>
         </div>
+
         <div class="button-group">
-          <button onclick="prevHighlight()">上一个</button>
-          <button onclick="nextHighlight()">下一个</button>
+          <button onclick="expandAll()">一键展开</button>
+          <button onclick="collapseAll()">一键折叠</button>
+        </div>
+        
+        <div class="search-section">
+          <div class="search-input-group">
+            <input type="text" id="searchInput" placeholder="输入搜索词...">
+            <!-- 添加匹配方式选择下拉菜单 -->
+            <select id="matchType">
+              <option value="partial">局部匹配</option>
+              <option value="regex">完整匹配</option>
+            </select>
+            <button onclick="searchAndHighlight()">搜索</button>
+          </div>
+          <div class="button-group">
+            <button onclick="prevHighlight()">上一个</button>
+            <button onclick="nextHighlight()">下一个</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-    <div class="content" style="z-index: 0; position: relative;"> <!-- 为内容区域添加 z-index 并设置相对定位 -->
-      <details class="indent-level-1"><summary><span class="folder-icon"></span><span class="clickable-title">📢近期公告</span></summary>
+      <div class="content" style="z-index: 0; position: relative;"> <!-- 为内容区域添加 z-index 并设置相对定位 -->
+        <details class="indent-level-1"><summary><span class="folder-icon"></span><span class="clickable-title">📢近期公告</span></summary>
 <div class="content-container">
 <div style="text-align:center;color:#000;font-size:14px;">
   <a href="https://xydh.fun/gmengshuai" target="_blank">
@@ -2829,6 +2916,7 @@
 <div class="content-container">
 <details class="indent-level-4"><summary><span class="folder-icon"></span><span class="clickable-title">无需登录账号 | 无需关注公众号 | 无需验证码</span></summary>
 <div class="content-container">
+<p>这些网站主要支持：夸克/阿里/百度，其余云盘搜索功能相对有限</p>
 <ul>
 <li>
 <p>✅ <a href="https://www.pansearch.me/">「综合站点」🌕PanSearch（夸克/阿里/百度/<code>迅雷</code>）</a></p>
@@ -2855,8 +2943,6 @@
 <p>✅ <a href="https://www.cuppaso.com/">「综合站点」🌕咔帕搜索（夸克/阿里/百度）</a></p>
 </li>
 </ul>
-<p>这些网站主要支持：夸克/阿里/百度，其余云盘搜索功能相对有限</p>
-<hr>
 </div></details>
 <details class="indent-level-4"><summary><span class="folder-icon"></span><span class="clickable-title">需登录账号 | 需关注公众号 | 需验证码 | 需回复</span></summary>
 <div class="content-container">
@@ -2880,7 +2966,6 @@
 <p>❌ <a href="https://www.panjd.com">「综合站点」🌖盘基地资源论坛（夸克/阿里/百度/<code>迅雷</code>）【注册码1元】</a></p>
 </li>
 </ul>
-<hr>
 </div></details>
 </div></details>
 <details class="indent-level-3"><summary><span class="folder-icon"></span><span class="clickable-title">02.阿里云盘</span></summary>
@@ -2899,7 +2984,6 @@
 <p>✅ <a href="https://aliwp.cn">「阿里云盘」🌕网盘资源分享</a></p>
 </li>
 </ul>
-<hr>
 </div></details>
 <details class="indent-level-3"><summary><span class="folder-icon"></span><span class="clickable-title">03.夸克云盘</span></summary>
 <div class="content-container">
@@ -2920,7 +3004,6 @@
 <p>❌ <a href="https://kk.leijing.xyz/">「夸克云盘」🌕资源江湖网 </a></p>
 </li>
 </ul>
-<hr>
 </div></details>
 <details class="indent-level-3"><summary><span class="folder-icon"></span><span class="clickable-title">04.天翼云盘</span></summary>
 <div class="content-container">
@@ -2938,27 +3021,20 @@
 <p>✅ <a href="https://www.leijing.xyz/">「天翼云盘」🌕雷鲸小站</a></p>
 </li>
 </ul>
-<hr>
 </div></details>
 <details class="indent-level-3"><summary><span class="folder-icon"></span><span class="clickable-title">05.TG搜</span></summary>
 <div class="content-container">
 <ul>
-<li>
-<p>❌ <a href="https://meow.tg/">「TG搜」🌕Meow.TG</a></p>
-</li>
-<li>
-<p>❌ <a href="https://www.sssoou.com/">「TG搜」🌕sssoou（被墙）</a></p>
-</li>
-<li>
-<p>✅ <a href="https://tg.qianfan.app/">「TG搜」🌕千帆搜索</a></p>
-</li>
+<li>✅ <a href="https://tgso.pro/">「TG搜」🌕tgso</a></li>
+<li>❌ <a href="https://meow.tg/">「TG搜」🌕Meow.TG</a></li>
+<li>✅ <a href="https://tg.qianfan.app/">「TG搜」🌕千帆搜索</a></li>
 </ul>
 </div></details>
 </div></details>
 <details class="indent-level-2"><summary><span class="folder-icon"></span><span class="clickable-title">02.百度云盘搜索</span></summary>
 <div class="content-container">
 <ul>
-<li>❌ <a href="https://www.chaonengso.com/">☁️超能搜（合集性）</a></li>
+<li>✅ <a href="https://www.chaonengso.com/">☁️超能搜（合集性）</a></li>
 <li>✅ <a href="https://www.iizhi.cn/">☁️毕方铺</a></li>
 <li>✅ <a href="http://www.zhuzhupan.com/">☁️猪猪盘</a></li>
 <li>✅ <a href="https://www.xiaobaipan.com/">☁️小白盘</a></li>
@@ -2987,12 +3063,12 @@
 <div class="content-container">
 <ul>
 <li>✅ <a href="http://imgdh.com/">图床导航 （大量的在线图床）</a></li>
+<li>✅ <a href="https://www.superbed.cn/">👍聚合图床（使用需要注册登录）</a></li>
 <li>✅ <a href="https://www.helloimg.com/">Hello图床（加载速度快，最大上传20MB）</a></li>
 <li>✅ <a href="https://picui.cn/">PICUI - PICUI图床</a></li>
-<li>✅<a href="https://imgbed.yiyunt.cn/">一云图床 - 极简高速外链图床</a></li>
-<li>✅ <a href="https://niupic.com/">牛图网（老站，稳定、加载速度快）</a></li>
+<li>✅<a href="https://imgkr.com/">图壳，图片最稳定的家 | 免费、安全、可靠图床</a></li>
+<li>✅ <a href="https://www.imgurl.ink/">ImgURL免费图床</a></li>
 <li>✅ <a href="https://vgy.me/">vgy.me（网站本身加载速度慢，速度一般）</a></li>
-<li>✅ <a href="https://www.superbed.cn/">👍聚合图床（使用需要注册登录）</a></li>
 <li>❌ <a href="https://imgse.com/?ref=zhanid.com">路过图床（速度还行，预览全图带广告，每日有限制上传）</a></li>
 <li>✅ <a href="https://imgbb.com/">imgBB图床（无markdown链接）</a></li>
 <li>✅ <a href="https://www.picb.cc/">picb.cc（加载速度一般）</a></li>
@@ -3064,7 +3140,7 @@
 <ul>
 <li>✅ <a href="http://simpledesktops.com/browse/">Simpledesktops（极简）</a></li>
 <li>✅ <a href="http://www.facets.la/">Facet（插画）</a></li>
-<li>❌ <a href="https://gratisography.com/">Gratisography（设计灵感来源）</a></li>
+<li>✅ <a href="https://gratisography.com/">Gratisography（设计灵感来源）</a></li>
 <li>✅ <a href="https://bz.zzzmh.cn/#index">极简壁纸</a></li>
 <li>❌ <a href="https://pic.netbian.com/4kdongman/">彼岸图网</a></li>
 <li>❌ <a href="https://www.pexels.com/zh-cn/">pexels</a></li>
@@ -3410,12 +3486,12 @@
 <details class="indent-level-2"><summary><span class="folder-icon"></span><span class="clickable-title">01.国内精品软件1区</span></summary>
 <div class="content-container">
 <ul>
-<li>❌ <a href="http://www.sssoou.com/">👍Telegram中文搜索（被墙）　「集各类资源于一身的电报」</a></li>
+<li>✅ <a href="https://tgso.pro/">👍Telegram中文搜索（被墙）　「集各类资源于一身的电报」</a></li>
 <li>✅ <a href="https://www.52pojie.cn/">👍吾爱破解论坛　　　「集各类资源于一身的论坛」</a></li>
 <li>✅ <a href="https://xiaoshuai.link/locker/">👍小帅同学的储物间　「集各类资源于一身的储物间」</a>【✅ <a href="http://gmengshuai.ys168.com/">老站</a>】</li>
 <li>✅ <a href="http://axutongxue.com/">👍阿虚的博客　　　　「集各类资源于一身的博客」</a></li>
 <li>❌ <a href="https://ldqk.org/">懒得勤快（被墙）「蓝奏云、网盘直链」</a></li>
-<li>❌ <a href="https://www.423down.com/">423down「蓝奏云、网盘直链」</a></li>
+<li>✅ <a href="https://www.423down.com/">423down「蓝奏云、网盘直链」</a></li>
 <li>✅ <a href="https://iao.su/">不死鸟（被墙）　「分享为王」</a></li>
 <li>✅ <a href="http://www.hackhw.com/">黑域基地「百度云、迅雷、网盘直链」</a></li>
 <li>✅ <a href="https://www.ghpym.com/">果核剥壳「城通网盘、百度云盘、天翼云盘」</a></li>
@@ -3425,14 +3501,14 @@
 <details class="indent-level-2"><summary><span class="folder-icon"></span><span class="clickable-title">02.国内精品软件2区</span></summary>
 <div class="content-container">
 <ul>
-<li>❌ <a href="https://www.tenlonstudio.com/">腾龙工作室【Windows / Android / MAC】</a></li>
+<li>✅ <a href="https://www.tenlonstudio.com/">腾龙工作室【Windows / Android / MAC】</a></li>
 <li>✅ <a href="https://fsylr.com/">发烧友绿软 【Windows / Android】</a></li>
-<li>❌ <a href="https://www.mefcl.com/">MEFCL【Windows】</a></li>
-<li>❌ <a href="https://www.pojies.cn/">Go破解【Windows / Android】</a></li>
+<li>✅ <a href="https://www.mefcl.com/">MEFCL【Windows】</a></li>
+<li>✅ <a href="https://www.gopojie.com/">Go破解【Windows / Android】</a></li>
 <li>✅ <a href="https://www.maxiaobang.com/">马小帮 【Windows / Android】</a></li>
-<li>❌ <a href="https://www.heji.ltd/">合集网 【Windows / Android】</a>【✅ <a href="https://233heji.com/">备用</a>】</li>
+<li>✅ <a href="https://233heji.com/">合集网 【Windows / Android】</a>【✅ <a href="https://233heji.com/">备用</a>】</li>
 <li>✅ <a href="https://www.xqu5.com/">兴趣屋 【Windows / Android】</a></li>
-<li>❌ <a href="https://www.iplaysoft.com/">异次元软件 【Windows / Android / MAC / IOS】</a></li>
+<li>✅ <a href="https://www.iplaysoft.com/">异次元软件 【Windows / Android / MAC / IOS】</a></li>
 <li>❌ <a href="https://zhouxiaoben.info/">小笨分享站 【Windows / Android】</a></li>
 <li>✅ <a href="https://www.fishlee.net/">鱼后花园 　【Windows / Android】</a></li>
 <li>✅ <a href="http://www.yeyulingfeng.com/">夜雨聆风 　【Windows / Android】</a></li>
@@ -3640,17 +3716,17 @@
 <ul>
 <li>✅<a href="https://www.wandou.la/">🌕豆瓣PRO（全网影视搜）</a></li>
 <li>✅<a href="https://www.acupfox.com/">🌖茶杯狐（全网影视搜）</a></li>
-<li>❌<a href="https://soupian.icu/">🌖搜片（全网影视搜）</a></li>
-<li>❌<a href="https://m.huya.com/g/seeTogether">🌕虎牙一起看（经典影视轮播）</a></li>
+<li>✅<a href="https://soupian.icu/">🌖搜片（全网影视搜）</a></li>
+<li>✅<a href="https://m.huya.com/g/seeTogether">🌕虎牙一起看（经典影视轮播）</a></li>
 <li>✅<a href="https://www.douyu.com/g_yqk">🌖斗鱼一起看 （没有虎牙精彩）</a></li>
-<li>❌<a href="https://www.douyin.com/">🌖抖音网页版</a></li>
-<li>❌<a href="https://www.freeok.vip/">🌕FreeOk（无广告，多源，不卡顿）</a></li>
-<li>✅<a href="https://libvio.top/">🌕LIBVIO（无广告，多源，不卡顿）</a></li>
-<li>❌<a href="https://www.dmys.tv/">🌖大米星球官网永久发布页（支持IDM下载 多源）</a></li>
-<li>✅<a href="https://mykpkuang.gitbook.io/new">🌕最新访问地址 | KP狂人使用手册 (gitbook.io)</a></li>
-<li>❌<a href="https://www.zbkk.net/zbktype/1.html">🌖真不卡影院 地址发布页（不卡顿）</a></li>
-<li>❌<a href="https://gimys.tv/">🌖Gimy TV 剧迷（支持IDM下载 多源）</a></li>
-<li>❌<a href="https://yanetflix.com/">🌕4K鸭奈飞蓝光资源站（支持IDM下载 蓝光观看）</a></li>
+<li>✅<a href="https://www.douyin.com/">🌖抖音网页版</a></li>
+<li>✅<a href="https://freeokvod.com/">🌕FreeOk（无广告，多源，不卡顿）</a></li>
+<li>✅<a href="https://libvio.app/">🌕LIBVIO（无广告，多源，不卡顿）</a></li>
+<li>✅<a href="https://dmuqe.art/">🌖大米星球官网永久发布页（支持IDM下载 多源）</a></li>
+<li>✅<a href="https://kpkuang.sbs/">🌕最新访问地址 | KP狂人使用手册 (gitbook.io)</a></li>
+<li>✅<a href="http://www.sybdfw.com/">🌖真不卡影院（不卡顿）</a></li>
+<li>✅<a href="https://gimy.tv/">🌖Gimy TV 剧迷（支持IDM下载 多源）</a></li>
+<li>✅<a href="https://gimytw.cc/">🌖Gimy TV 劇迷線上看</a></li>
 <li>✅<a href="https://www.pkmp4.xyz/">🌖片库（提供在线观看与BT下载）</a></li>
 <li>❌<a href="https://ddys.site/">🌓低端影视（地址发布页）</a></li>
 <li>✅<a href="https://www.czzy88.com/">🌖厂长资源（无广告）</a></li>
@@ -4717,102 +4793,109 @@
 <li>📖✅ <a href="https://mp.weixin.qq.com/s/awl_BCJjwdiDElmMmab6IQ">👍文章　「第四期」 hexo+github搭建博客（免费CDN加速）</a></li>
 <li>📖✅ <a href="https://mp.weixin.qq.com/s/d-jlCtKGa2oh7lmcY1DN-A">👍文章　《Github或Github.io打开缓慢及无法访问解决方案》</a></li>
 </ul>
+</div></details>
+<details class="indent-level-2"><summary><span class="folder-icon"></span><span class="clickable-title">13.AI 生产工具</span></summary>
+<div class="content-container">
+<ul>
+<li>📖✅ <a href="https://mp.weixin.qq.com/s/MClClgVKY6YHGv6qyPFCkw">👍文章　《Cursor学生认证享一年会员，恢复中国地区访问（速进）》</a></li>
+<li>📖✅ <a href="https://mp.weixin.qq.com/s/3lxoepD890NxYVu1Fa3JaQ">👍文章　《国内免费无限制使用Claude3.5、Claude3.7、GPT4o等「官方渠道」》</a></li>
+</ul>
 <p><img src="https://pic.imgdb.cn/item/65923bd1c458853aefdbd883.jpg" alt=""></p>
 
 </div></details>
 </div></details>
 
-    </div>
-
-   <!-- 微信公众号展示 -->
-  <div class="wechat-section">
-    <p class="wechat-title">欢迎关注我的微信公众号: 小帅随笔</p>
-    <!-- 修改为将访问量和访客数放在一行 -->
-    <p class="visit-count">访问量: <span id="busuanzi_value_site_pv"></span> 次 | 访客数: <span id="busuanzi_value_site_uv"></span> 人</p>
-  </div>
-
-  <!-- 右侧悬浮按钮和侧边栏 -->
-  <div id="floating-button" style="
-      position: fixed;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: #2196F3;
-      border-radius: 25px 0 0 10px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 24px;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.2);
-      z-index: 10000;
-      ">
-      👈侧边栏
-  </div>
-
-    <!-- 侧边栏广告位 -->
-  <div id="sidebar-content" style="
-      /* 固定定位，位于页面右侧 */
-      position: fixed;
-      /* 初始隐藏在页面右侧 */
-      right: -300px;
-      /* 垂直居中 */
-      top: 50%;
-      transform: translateY(-50%);
-      /* 侧边栏宽度 */
-      width: 260px; 
-      /* 过渡动画，实现平滑显示和隐藏 */
-      transition: right 0.3s ease;
-      /* 设置层级，确保显示在其他元素之上 */
-      z-index: 9999;
-      /* 左侧圆角 */
-      border-radius: 10px 0 0 10px;
-      /* 内边距 */
-      padding-top: 10px;
-      padding-right: 40px;
-      padding-bottom: 10px;
-      padding-left: 10px;
-    ">
-      
-      <div class="ad-container" style="
-          display: flex;
-          flex-direction: column;
-          gap: 20px;">
-          <a href="https://simhaoka.com/phone/index?id=0E47D457B933E60E233CD5772AB85559" 
-            target="_blank" 
-            style="
-                display: block;
-                transition: transform 0.3s ease;
-                border-radius: 8px;
-                overflow: hidden;
-                box-shadow: 0 1px 2px 2px #64b5f6;
-                text-align: center;
-                padding: 10px;
-                text-decoration: none;">
-              小帅的流量卡店铺
-          </a>
-
-          <a href="https://flowus.cn/share/45f5e4bf-0b9f-431a-9e18-86c47c490b78?code=JK1MBY" 
-            target="_blank"
-            style="
-                display: block;
-                transition: transform 0.3s ease;
-                border-radius: 8px;
-                overflow: hidden;
-                box-shadow: 0 1px 2px 2px #64b5f6;
-                text-align: center;
-                padding: 10px;
-                text-decoration: none;">
-              小帅的付费服务
-          </a>
       </div>
+
+     <!-- 微信公众号展示 -->
+    <div class="wechat-section">
+      <p class="wechat-title">欢迎关注我的微信公众号: 小帅随笔</p>
+      <!-- 修改为将访问量和访客数放在一行 -->
+      <p class="visit-count">访问量: <span id="busuanzi_value_site_pv"></span> 次 | 访客数: <span id="busuanzi_value_site_uv"></span> 人</p>
     </div>
-    <!-- 添加粒子特效容器 -->
-    <div id="particles-js" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;">
+
+    <!-- 右侧悬浮按钮和侧边栏 -->
+    <div id="floating-button" style="
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #2196F3;
+        border-radius: 25px 0 0 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+        z-index: 10000;
+        ">
+        👈侧边栏
     </div>
-<script>
-    let highlightIndex=-1,highlightElements=[],isExpanding=!1,expandRequestId=null,detailsToExpand=[],expandIndex=0;const BATCH_SIZE=50;let isCollapsing=!1,collapseRequestId=null,particlesPaused=!1;function expandAll(){isExpanding||(isExpanding=!0,detailsToExpand=Array.from(document.querySelectorAll("details")),expandIndex=0,document.documentElement.style.setProperty("--transition-speed","0s"),function e(){const t=Math.min(expandIndex+50,detailsToExpand.length);for(;expandIndex<t;expandIndex++)detailsToExpand[expandIndex].open=!0;expandIndex<detailsToExpand.length?expandRequestId=requestAnimationFrame(e):finishExpanding()}())}function expandVisibleDetails(){const e=window.innerHeight;for(;expandIndex<detailsToExpand.length;){const t=detailsToExpand[expandIndex],n=t.getBoundingClientRect();if(!(n.bottom>0&&n.top<2*e))break;t.open=!0,expandIndex++}expandIndex>=detailsToExpand.length&&finishExpanding()}function expandOnScroll(){expandVisibleDetails()}function finishExpanding(){document.documentElement.style.setProperty("--transition-speed","0.2s"),isExpanding=!1,window.removeEventListener("scroll",expandOnScroll)}function collapseAll(){const e=document.querySelectorAll("details");document.documentElement.style.setProperty("--transition-speed","0s"),e.forEach((e=>e.open=!1)),document.documentElement.style.setProperty("--transition-speed","0.2s")}function searchAndHighlight(){const e=document.getElementById("searchInput").value.trim(),t=document.getElementById("matchType").value;e?(removeHighlights(),expandAll(),highlightText(document.querySelector(".content"),e,t),highlightElements=Array.from(document.querySelectorAll(".highlight")),highlightElements.length>0?(highlightIndex=0,scrollToHighlight()):alert("没有找到匹配项")):alert("请输入搜索内容")}function highlightText(e,t,n){if(e.nodeType===Node.TEXT_NODE){const i=e.nodeValue,o=i.toLowerCase();if("partial"===n){const n=t.toLowerCase().trim(),l=o.indexOf(n);if(-1!==l){const n=function(e,t,n){const i=document.createElement("span");t>0&&i.appendChild(document.createTextNode(e.slice(0,t)));const o=document.createElement("span");return o.className="highlight",o.appendChild(document.createTextNode(e.slice(t,t+n))),i.appendChild(o),t+n<e.length&&i.appendChild(document.createTextNode(e.slice(t+n))),i}(i,l,t.length);return e.parentNode.replaceChild(n,e),!0}}else if("regex"===n)try{const n=new RegExp(`\\b${t}\\b`,"gi");let o,l=0;const a=document.createElement("span");let d=!1;for(;null!==(o=n.exec(i));){const e=o.index,t=e+o[0].length;e>l&&a.appendChild(document.createTextNode(i.slice(l,e)));const n=document.createElement("span");n.className="highlight",n.textContent=o[0],a.appendChild(n),l=t,d=!0}if(d)return l<i.length&&a.appendChild(document.createTextNode(i.slice(l))),e.parentNode.replaceChild(a,e),!0}catch(e){console.error("正则匹配出错:",e)}}else if(e.nodeType===Node.ELEMENT_NODE&&!["SCRIPT","STYLE","BUTTON"].includes(e.tagName)){let i=!1;return Array.from(e.childNodes).forEach((e=>{highlightText(e,t,n)&&(i=!0)})),i}return!1}function removeHighlights(){document.querySelectorAll(".highlight").forEach((e=>{const t=e.parentNode,n=document.createTextNode(e.textContent);t.replaceChild(n,e),t.normalize()})),highlightIndex=-1,highlightElements=[]}function nextHighlight(){highlightElements.length>0&&(highlightIndex>=0&&highlightElements[highlightIndex].classList.remove("active-highlight"),highlightIndex=(highlightIndex+1)%highlightElements.length,scrollToHighlight())}function prevHighlight(){highlightElements.length>0&&(highlightIndex>=0&&highlightElements[highlightIndex].classList.remove("active-highlight"),highlightIndex=(highlightIndex-1+highlightElements.length)%highlightElements.length,scrollToHighlight())}function scrollToHighlight(){if(highlightElements.length>0&&-1!==highlightIndex){highlightElements.forEach((e=>e.classList.remove("active-highlight"))),highlightElements[highlightIndex].classList.add("active-highlight");let e=highlightElements[highlightIndex].parentElement;for(;e;)"DETAILS"===e.tagName&&(e.open=!0),e=e.parentElement;highlightElements[highlightIndex].scrollIntoView({behavior:"smooth",block:"center"})}}if(document.getElementById("searchInput").addEventListener("keypress",(function(e){"Enter"===e.key&&(0===highlightElements.length?searchAndHighlight():nextHighlight())})),"ontouchstart"in window){document.querySelectorAll("button").forEach((e=>{e.addEventListener("touchstart",(function(){this.style.transform="scale(0.97)"}),{passive:!0}),e.addEventListener("touchend",(function(){this.style.transform=""}),{passive:!0}),e.addEventListener("touchcancel",(function(){this.style.transform=""}),{passive:!0})}))}const savedTheme=localStorage.getItem("theme");function updateDateTime(){var e=new Date,t=e.getFullYear()+"-"+(e.getMonth()+1).toString().padStart(2,"0")+"-"+e.getDate().toString().padStart(2,"0")+" "+e.getHours().toString().padStart(2,"0")+":"+e.getMinutes().toString().padStart(2,"0")+":"+e.getSeconds().toString().padStart(2,"0");document.getElementById("currentDateTime").textContent=t}function toggleTheme(){document.documentElement.style.setProperty("--transition-speed","0s");var e=document.body,t="light"===(localStorage.getItem("theme")||"light")?"dark":"light";e.classList.remove("light-theme","dark-theme"),e.classList.add(t+"-theme"),localStorage.setItem("theme",t),document.getElementById("themeIcon").textContent="dark"===t?"🔥":"💧",requestAnimationFrame((()=>{document.documentElement.style.setProperty("--transition-speed","0.2s")}))}function initialize(){var e=localStorage.getItem("theme")||"light";document.body.classList.add(e+"-theme"),document.getElementById("themeIcon").textContent="dark"===e?"🔥":"💧",document.querySelectorAll("a").forEach((e=>{e.closest("#sidebar-content")||(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"))})),document.querySelectorAll("summary").forEach((e=>{e.addEventListener("click",(e=>{e.preventDefault()}))})),document.querySelectorAll(".clickable-title").forEach((e=>{e.addEventListener("click",(e=>{const t=e.target.closest("details");t.open=!t.open}))})),initParticles()}function toggleSidebar(){const e=document.querySelector(".sidebar-ad"),t=document.getElementById("sidebarIcon");e.classList.contains("open")?(e.classList.remove("open"),t.textContent="👈"):(e.classList.add("open"),t.textContent="👉")}savedTheme?document.body.classList.toggle("dark-theme","dark"===savedTheme):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark-theme"),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",initialize):initialize(),document.addEventListener("DOMContentLoaded",(function(){const e=document.getElementById("floating-button"),t=document.getElementById("sidebar-content");let n=!1;e&&t&&e.addEventListener("click",(function(){n?(t.style.right="-300px",e.textContent="👈"):(t.style.right="0",e.textContent="👉"),n=!n}))}));const observer=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{if(1===e.nodeType){e.querySelectorAll("a").forEach((e=>{e.closest("#sidebar-content")||(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"))}))}}))}))}));document.addEventListener("DOMContentLoaded",(()=>{observer.observe(document.body,{childList:!0,subtree:!0})}));const particlesConfig={particles:{number:{value:80,density:{enable:!0,value_area:800}},color:{value:"#1976D2"},shape:{type:"circle",stroke:{width:0,color:"#1976D2"},polygon:{nb_sides:5},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.5,random:!1,anim:{enable:!1,speed:1,opacity_min:.1,sync:!1}},size:{value:3,random:!0,anim:{enable:!1,speed:4,size_min:.1,sync:!1}},line_linked:{enable:!0,distance:150,color:"#1976D2",opacity:.4,width:1},move:{enable:!0,speed:2,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:140,line_linked:{opacity:1}},bubble:{distance:400,size:40,duration:2,opacity:8,speed:3},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}}},retina_detect:!0};function initParticles(){particlesJS("particles-js",particlesConfig)}
-  </script>
-</body>
-</html>
+
+      <!-- 侧边栏广告位 -->
+    <div id="sidebar-content" style="
+        /* 固定定位，位于页面右侧 */
+        position: fixed;
+        /* 初始隐藏在页面右侧 */
+        right: -300px;
+        /* 垂直居中 */
+        top: 50%;
+        transform: translateY(-50%);
+        /* 侧边栏宽度 */
+        width: 260px; 
+        /* 过渡动画，实现平滑显示和隐藏 */
+        transition: right 0.3s ease;
+        /* 设置层级，确保显示在其他元素之上 */
+        z-index: 9999;
+        /* 左侧圆角 */
+        border-radius: 10px 0 0 10px;
+        /* 内边距 */
+        padding-top: 10px;
+        padding-right: 40px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+      ">
+        
+        <div class="ad-container" style="
+            display: flex;
+            flex-direction: column;
+            gap: 20px;">
+            <a href="https://simhaoka.com/phone/index?id=0E47D457B933E60E233CD5772AB85559" 
+              target="_blank" 
+              style="
+                  display: block;
+                  transition: transform 0.3s ease;
+                  border-radius: 8px;
+                  overflow: hidden;
+                  box-shadow: 0 1px 2px 2px #64b5f6;
+                  text-align: center;
+                  padding: 10px;
+                  text-decoration: none;">
+                小帅的流量卡店铺
+            </a>
+
+            <a href="https://flowus.cn/share/45f5e4bf-0b9f-431a-9e18-86c47c490b78?code=JK1MBY" 
+              target="_blank"
+              style="
+                  display: block;
+                  transition: transform 0.3s ease;
+                  border-radius: 8px;
+                  overflow: hidden;
+                  box-shadow: 0 1px 2px 2px #64b5f6;
+                  text-align: center;
+                  padding: 10px;
+                  text-decoration: none;">
+                付费服务(密码:9527)
+            </a>
+        </div>
+      </div>
+      <!-- 添加粒子特效容器 -->
+      <div id="particles-js" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;">
+      </div>
+  <script>
+      let highlightIndex=-1,highlightElements=[],isExpanding=!1,expandRequestId=null,detailsToExpand=[],expandIndex=0;const BATCH_SIZE=50;let isCollapsing=!1,collapseRequestId=null,particlesPaused=!1;function showProgressIndicator(e,t){let n=document.getElementById("operation-progress");if(n||(n=document.createElement("div"),n.id="operation-progress",n.style.position="fixed",n.style.bottom="20px",n.style.left="50%",n.style.transform="translateX(-50%)",n.style.backgroundColor="rgba(33, 150, 243, 0.9)",n.style.color="white",n.style.padding="10px 20px",n.style.borderRadius="20px",n.style.zIndex="9999",n.style.boxShadow="0 2px 8px rgba(0,0,0,0.2)",n.style.display="flex",n.style.alignItems="center",n.style.justifyContent="center",n.style.gap="10px",document.body.appendChild(n)),t>=100)n.innerHTML=e+" 完成!",setTimeout((function(){n.style.opacity="0",setTimeout((function(){n.parentNode&&document.body.removeChild(n)}),300)}),1e3);else{const o='<div style="flex: 1; background: rgba(255,255,255,0.3); height: 8px; border-radius: 4px; overflow: hidden;"><div style="background: white; height: 100%; width: '+t+'%;"></div></div><span>'+t+"%</span>";n.innerHTML=e+" "+o,n.style.opacity="1"}}function expandAll(){if(isExpanding)return;isCollapsing&&(collapseRequestId&&cancelAnimationFrame(collapseRequestId),isCollapsing=!1),isExpanding=!0,document.documentElement.style.setProperty("--transition-speed","0s");const e=Array.from(document.querySelectorAll("details:not([open])")),t=e.length;if(0===t)return isExpanding=!1,void document.documentElement.style.setProperty("--transition-speed","0.2s");console.log("开始展开，共 "+t+" 个元素");const n=window.innerHeight,o=[],i=[];if(e.forEach((e=>{const t=e.getBoundingClientRect();t.top<2*n&&t.bottom>-n?o.push(e):(i.push(e),e.setAttribute("data-pending-expand","true"))})),o.forEach((e=>e.open=!0)),console.log("已展开可见区域内 "+o.length+" 个元素"),0===i.length)return document.documentElement.style.setProperty("--transition-speed","0.2s"),isExpanding=!1,void console.log("所有元素已展开");const l=document.createElement("div");l.id="expand-info-message",l.style.position="fixed",l.style.bottom="20px",l.style.left="50%",l.style.transform="translateX(-50%)",l.style.backgroundColor="rgba(33, 150, 243, 0.8)",l.style.color="white",l.style.padding="8px 16px",l.style.borderRadius="20px",l.style.zIndex="9999",l.style.boxShadow="0 2px 5px rgba(0,0,0,0.2)",l.textContent="✅ 可见内容已展开，滚动查看更多内容",document.body.appendChild(l),setTimeout((()=>{l.style.transition="opacity 0.5s",l.style.opacity="0",setTimeout((()=>{l.parentNode&&l.parentNode.removeChild(l)}),500)}),5e3);let s=null;const a=()=>{s||(s=setTimeout((()=>{const e=1.5*window.innerHeight,t=document.querySelectorAll('details[data-pending-expand="true"]');let n=0;t.forEach((t=>{t.getBoundingClientRect().top<e&&(t.open=!0,t.removeAttribute("data-pending-expand"),n++)})),n>0&&console.log("滚动时展开了 "+n+" 个元素"),0===document.querySelectorAll('details[data-pending-expand="true"]').length&&(window.removeEventListener("scroll",a),console.log("所有元素已展开"),isExpanding=!1),s=null}),100))};a(),window.addEventListener("scroll",a,{passive:!0}),document.documentElement.style.setProperty("--transition-speed","0.2s")}function expandVisibleOnly(){const e=window.innerHeight;let t=0;detailsToExpand.forEach((n=>{const o=n.getBoundingClientRect();o.top<1.5*e&&o.bottom>.5*-e&&(n.open=!0,t++)})),console.log("已展开可见区域内 "+t+" 个元素")}function progressiveExpand(){this.expandScrollThrottle||(this.expandScrollThrottle=!0,setTimeout((()=>{this.expandScrollThrottle=!1;const e=window.innerHeight;let t=0;detailsToExpand.forEach((n=>{if(!n.open){const o=n.getBoundingClientRect();o.top<1.5*e&&o.bottom>.5*-e&&(n.open=!0,t++)}})),t>0&&console.log("滚动时展开了 "+t+" 个元素");0===document.querySelectorAll("details:not([open])").length&&forceCompleteExpand()}),200))}function forceCompleteExpand(){window.removeEventListener("scroll",progressiveExpand),window.removeEventListener("scroll",arguments.callee),document.documentElement.style.setProperty("--transition-speed","0.2s"),isExpanding=!1;const e=document.getElementById("progressive-expand-info");e&&e.parentNode&&e.parentNode.removeChild(e),showProgressIndicator("展开",100),console.log("展开操作完成")}function processDetailsInChunks(e,t){let n=0;const o=e.length,i=window.requestIdleCallback||window.requestAnimationFrame;i((function l(s){const a=performance.now();let r=0;for(;n<o&&r<t&&(e[n++].open=!0,r++,!(performance.now()-a>20)););const d=Math.floor(n/o*100);d%10==0&&showProgressIndicator("展开中",d),n<o?i(l):(document.documentElement.style.setProperty("--transition-speed","0.2s"),showProgressIndicator("展开",100),isExpanding=!1,console.log("展开操作完成"))}))}function collapseAll(){if(isCollapsing)return;isCollapsing=!0,isExpanding&&(expandRequestId&&cancelAnimationFrame(expandRequestId),window.removeEventListener("scroll",progressiveExpand),isExpanding=!1),document.documentElement.style.setProperty("--transition-speed","0s"),removeHighlights(),highlightIndex=-1,highlightElements=[];const e=Array.from(document.querySelectorAll("details[open]")),t=e.length;if(console.log("开始折叠，共 "+t+" 个元素"),0===t)return isCollapsing=!1,void document.documentElement.style.setProperty("--transition-speed","0.2s");e.forEach((e=>{e.open=!1})),requestAnimationFrame((()=>{document.documentElement.style.setProperty("--transition-speed","0.2s"),isCollapsing=!1,console.log("折叠完成")}))}function collapseInvisibleFirst(e){const t=window.innerHeight,n=[],o=[];e.forEach((e=>{const i=e.getBoundingClientRect();i.top<t&&i.bottom>0?n.push(e):o.push(e)})),console.log("可见元素: "+n.length+", 不可见元素: "+o.length),o.forEach((e=>e.open=!1)),requestAnimationFrame((()=>{n.forEach((e=>e.open=!1)),finishCollapsing()}))}function processCollapseInChunks(e,t){let n=0;const o=e.length,i=window.requestIdleCallback||window.requestAnimationFrame;i((function l(s){const a=performance.now();let r=0;for(;n<o&&r<t&&(e[n++].open=!1,r++,!(performance.now()-a>20)););const d=Math.floor(n/o*100);d%10==0&&showProgressIndicator("折叠中",d),n<o?i(l):finishCollapsing()}))}function finishCollapsing(){document.documentElement.style.setProperty("--transition-speed","0.2s"),showProgressIndicator("折叠",100),isCollapsing=!1,console.log("折叠完成")}function searchAndHighlight(){const e=document.getElementById("searchInput").value.trim(),t=document.getElementById("matchType").value;e?(console.log('开始搜索: "'+e+'", 匹配模式: '+t),removeHighlights(),expandAll(),setTimeout((()=>{console.log("开始执行匹配...");highlightText(document.querySelector(".content"),e,t);highlightElements=Array.from(document.querySelectorAll(".highlight")),console.log("匹配完成，共找到 "+highlightElements.length+" 个匹配项"),highlightElements.length>0?(highlightIndex=0,scrollToHighlight()):alert("没有找到匹配项")}),100)):alert("请输入搜索内容")}function highlightText(e,t,n){let o=!1;if(e.nodeType===Node.TEXT_NODE){const i=e.textContent;if(!i||""===i.trim())return!1;let l=[];if("partial"===n){const e=t.toLowerCase();let n=i.toLowerCase().indexOf(e);for(;-1!==n;)l.push({start:n,end:n+t.length}),console.log('[部分匹配] 在文本 "'+i+'" 中找到匹配: "'+i.substring(n,n+t.length)+'", 位置: '+n),n=i.toLowerCase().indexOf(e,n+1)}else if("regex"===n)if("wps"===t.toLowerCase()){console.log("[特殊处理] 查找WPS关键词，使用简单匹配");const e=i.toLowerCase();let t=e.indexOf("wps");for(;-1!==t;)l.push({start:t,end:t+3}),console.log('[WPS匹配] 找到匹配: "wps" 在位置: '+t+', 文本: "'+i+'"'),t=e.indexOf("wps",t+1)}else if(/^[a-zA-Z0-9]+$/.test(t)&&t.length>1){console.log('[全词匹配] 尝试词边界匹配: "'+t+'"');let e,n=new RegExp("\b"+t+"\b","gi");for(;null!==(e=n.exec(i));)l.push({start:e.index,end:e.index+e[0].length}),console.log('[全词匹配] 找到匹配: "'+e[0]+'" 在位置: '+e.index)}else{console.log('[全词匹配] 使用精确匹配: "'+t+'"');const e=new RegExp(t,"gi");let n;for(;null!==(n=e.exec(i));)l.push({start:n.index,end:n.index+n[0].length}),console.log('[精确匹配] 找到匹配: "'+n[0]+'" 在位置: '+n.index)}if(l.length>0){const t=document.createElement("span");let n=0;l.forEach((e=>{e.start>n&&t.appendChild(document.createTextNode(i.substring(n,e.start)));const o=document.createElement("span");o.className="highlight",o.textContent=i.substring(e.start,e.end),t.appendChild(o),n=e.end})),n<i.length&&t.appendChild(document.createTextNode(i.substring(n))),e.parentNode.replaceChild(t,e);let s=t.parentNode;for(;s;)"DETAILS"===s.tagName&&(s.open=!0),s=s.parentNode;o=!0}}else if(e.nodeType===Node.ELEMENT_NODE){if(["SCRIPT","STYLE","BUTTON"].includes(e.tagName))return!1;Array.from(e.childNodes).forEach((e=>{highlightText(e,t,n)&&(o=!0)}))}return o}function removeHighlights(){document.querySelectorAll(".highlight").forEach((e=>{const t=e.parentNode,n=document.createTextNode(e.textContent);t.replaceChild(n,e),t.normalize()})),highlightIndex=-1,highlightElements=[]}function nextHighlight(){highlightElements.length>0&&(highlightIndex>=0&&highlightElements[highlightIndex].classList.remove("active-highlight"),highlightIndex=(highlightIndex+1)%highlightElements.length,scrollToHighlight())}function prevHighlight(){highlightElements.length>0&&(highlightIndex>=0&&highlightElements[highlightIndex].classList.remove("active-highlight"),highlightIndex=(highlightIndex-1+highlightElements.length)%highlightElements.length,scrollToHighlight())}function scrollToHighlight(){if(highlightElements.length>0&&-1!==highlightIndex){highlightElements.forEach((e=>e.classList.remove("active-highlight"))),highlightElements[highlightIndex].classList.add("active-highlight");let e=highlightElements[highlightIndex].parentElement;for(;e;)"DETAILS"===e.tagName&&(e.open=!0),e=e.parentElement;highlightElements[highlightIndex].scrollIntoView({behavior:"smooth",block:"center"})}}if(document.getElementById("searchInput").addEventListener("keypress",(function(e){"Enter"===e.key&&(0===highlightElements.length?searchAndHighlight():nextHighlight())})),"ontouchstart"in window){document.querySelectorAll("button").forEach((e=>{e.addEventListener("touchstart",(function(){this.style.transform="scale(0.97)"}),{passive:!0}),e.addEventListener("touchend",(function(){this.style.transform=""}),{passive:!0}),e.addEventListener("touchcancel",(function(){this.style.transform=""}),{passive:!0})}))}const savedTheme=localStorage.getItem("theme");function updateDateTime(){var e=new Date,t=e.getFullYear()+"-"+(e.getMonth()+1).toString().padStart(2,"0")+"-"+e.getDate().toString().padStart(2,"0")+" "+e.getHours().toString().padStart(2,"0")+":"+e.getMinutes().toString().padStart(2,"0")+":"+e.getSeconds().toString().padStart(2,"0");document.getElementById("currentDateTime").textContent=t}function toggleTheme(){const e=document.getElementById("particlesToggle")?.checked||!1,t=document.getElementById("particles-js");e&&t&&(t.style.display="none"),document.body.classList.toggle("dark-theme"),document.getElementById("themeIcon").textContent=document.body.classList.contains("dark-theme")?"🔥":"💧",localStorage.setItem("theme",document.body.classList.contains("dark-theme")?"dark":"light"),e&&(window.pJSDom&&window.pJSDom.length>0&&(window.pJSDom[0].pJS.fn.vendors.destroypJS(),window.pJSDom=[]),t&&setTimeout((()=>{t.style.display="block",initParticles()}),50))}function initialize(){const e=window.innerWidth<=768;("dark"===localStorage.getItem("theme")||!localStorage.getItem("theme")&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&(document.body.classList.add("dark-theme"),document.getElementById("themeIcon").textContent="🔥");let t=localStorage.getItem("particles-enabled");null===t&&(t=e?"false":"true",localStorage.setItem("particles-enabled",t));const n=document.getElementById("particlesToggle");if(n&&(n.checked="true"===t,n.addEventListener("change",(function(e){localStorage.setItem("particles-enabled",e.target.checked?"true":"false");const t=document.getElementById("particles-js");e.target.checked?t&&(t.style.display="block",window.pJSDom&&0!==window.pJSDom.length||setTimeout(initParticles,300)):t&&(t.style.display="none")}))),"true"===t)setTimeout(initParticles,e?1500:800);else{const e=document.getElementById("particles-js");e&&(e.style.display="none")}e||setTimeout((()=>{document.querySelectorAll("a").forEach((e=>{e.closest("#sidebar-content")||(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"))}))}),1e3),setTimeout((()=>{document.querySelectorAll("summary").forEach((e=>{e.addEventListener("click",(e=>{e.preventDefault()}))})),document.querySelectorAll(".clickable-title").forEach((e=>{e.addEventListener("click",(e=>{const t=e.target.closest("details");t.open=!t.open}))}))}),e?1e3:500)}function toggleSidebar(){const e=document.querySelector(".sidebar-ad"),t=document.getElementById("sidebarIcon");e.classList.contains("open")?(e.classList.remove("open"),t.textContent="👈"):(e.classList.add("open"),t.textContent="👉")}savedTheme?document.body.classList.toggle("dark-theme","dark"===savedTheme):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark-theme"),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",initialize):initialize(),document.addEventListener("DOMContentLoaded",(function(){const e=document.getElementById("floating-button"),t=document.getElementById("sidebar-content");let n=!1;e&&t&&e.addEventListener("click",(function(){n?(t.style.right="-300px",e.textContent="👈"):(t.style.right="0",e.textContent="👉"),n=!n}))}));const observer=new MutationObserver((e=>{e.forEach((e=>{e.addedNodes.forEach((e=>{if(1===e.nodeType){e.querySelectorAll("a").forEach((e=>{e.closest("#sidebar-content")||(e.setAttribute("target","_blank"),e.setAttribute("rel","noopener noreferrer"))}))}}))}))}));document.addEventListener("DOMContentLoaded",(()=>{observer.observe(document.body,{childList:!0,subtree:!0})}));const particlesConfig={particles:{number:{value:80,density:{enable:!0,value_area:800}},color:{value:"#1976D2"},shape:{type:"circle",stroke:{width:0,color:"#1976D2"},polygon:{nb_sides:5},image:{src:"img/github.svg",width:100,height:100}},opacity:{value:.5,random:!1,anim:{enable:!1,speed:1,opacity_min:.1,sync:!1}},size:{value:3,random:!0,anim:{enable:!1,speed:4,size_min:.1,sync:!1}},line_linked:{enable:!0,distance:150,color:"#1976D2",opacity:.4,width:1},move:{enable:!0,speed:2,direction:"none",random:!1,straight:!1,out_mode:"out",bounce:!1,attract:{enable:!1,rotateX:600,rotateY:1200}}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!0,mode:"grab"},onclick:{enable:!0,mode:"push"},resize:!0},modes:{grab:{distance:140,line_linked:{opacity:1}},bubble:{distance:400,size:40,duration:2,opacity:8,speed:3},repulse:{distance:200,duration:.4},push:{particles_nb:4},remove:{particles_nb:2}}},retina_detect:!0},mobileParticlesConfig={particles:{number:{value:20,density:{enable:!0,value_area:800}},color:{value:"#1976D2"},shape:{type:"circle"},opacity:{value:.3,random:!1},size:{value:2,random:!0},line_linked:{enable:!0,distance:100,color:"#1976D2",opacity:.2,width:1},move:{enable:!0,speed:1,direction:"none",random:!1,straight:!1,out_mode:"out"}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!1},onclick:{enable:!1},resize:!0}},retina_detect:!1};function initParticles(){window.innerWidth<=768?particlesJS("particles-js",{particles:{number:{value:15,density:{enable:!0,value_area:800}},color:{value:"#1976D2"},shape:{type:"circle"},opacity:{value:.3},size:{value:2},line_linked:{enable:!0,distance:150,color:"#1976D2",opacity:.2,width:1},move:{enable:!0,speed:1,direction:"none",random:!1,straight:!1}},interactivity:{detect_on:"canvas",events:{onhover:{enable:!1},onclick:{enable:!1}}},retina_detect:!1}):particlesJS("particles-js",particlesConfig)}
+    </script>
+  </body>
+  </html>
